@@ -26,13 +26,13 @@ xxfunc-server = { path = "server" }
 
 reth-exex = { git = "https://github.com/paradigmxyz/reth", features = [
 	"serde",
-], rev = "5cd22b50e86a3b09cade509235120a6176de7097" }
-reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", rev = "5cd22b50e86a3b09cade509235120a6176de7097" }
-reth = { git = "https://github.com/paradigmxyz/reth", rev = "5cd22b50e86a3b09cade509235120a6176de7097" }
-reth-node-api = { git = "https://github.com/paradigmxyz/reth", rev = "5cd22b50e86a3b09cade509235120a6176de7097" }
-reth-tracing = { git = "https://github.com/paradigmxyz/reth", rev = "5cd22b50e86a3b09cade509235120a6176de7097" }
-reth-exex-types = { git = "https://github.com/paradigmxyz/reth", rev = "5cd22b50e86a3b09cade509235120a6176de7097" }
-reth-execution-types = { git = "https://github.com/paradigmxyz/reth", rev = "5cd22b50e86a3b09cade509235120a6176de7097" }
+] }
+reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth" }
+reth = { git = "https://github.com/paradigmxyz/reth" }
+reth-node-api = { git = "https://github.com/paradigmxyz/reth" }
+reth-tracing = { git = "https://github.com/paradigmxyz/reth" }
+reth-exex-types = { git = "https://github.com/paradigmxyz/reth" }
+reth-execution-types = { git = "https://github.com/paradigmxyz/reth" }
 
 # async
 async-trait = "0.1"
