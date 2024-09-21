@@ -1,2 +1,2 @@
-pub mod bin;
 pub mod runtime;
+pub mod wasm;
