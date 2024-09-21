@@ -1,32 +1,3 @@
-use std::{collections::VecDeque, process::Command, sync::Arc};
-
-use eyre::Result;
-use futures::channel::oneshot;
-use parking_lot::Mutex;
-use reth_exex_types::ExExNotification;
-use std::thread;
-use tracing::info;
-
-#[derive(Debug)]
-pub struct JoinHandle<T>(oneshot::Receiver<T>);
-
-impl<T> std::future::Future for JoinHandle<T> {
-    type Output = Result<T, oneshot::Canceled>;
-
-    fn poll(
-        mut self: std::pin::Pin<&mut Self>,
-        cx: &mut std::task::Context<'_>,
-    ) -> std::task::Poll<Self::Output> {
-        std::pin::Pin::new(&mut self.0).poll(cx)
-    }
-}
-
-struct Task {
-    binary_path: String,
-    exex_notification: Arc<ExExNotification>,
-    result_sender: oneshot::Sender<Result<()>>,
-}
-
 pub struct Runtime {
     inner: Arc<Inner>,
 }
@@ -51,7 +22,7 @@ impl Runtime {
                     while let Some(task) = inner.tasks.lock().pop_front() {
                         let binary_path = task.binary_path.clone();
                         let exex_notification = task.exex_notification.clone();
-                        let result_sender = task.result_sender.clone();
+                        let result_sender = task.result_sender; // Use it directly
 
                         let status = Command::new(binary_path)
                             .arg(serde_json::to_string(&*exex_notification).unwrap())
@@ -66,6 +37,7 @@ impl Runtime {
                             )),
                         };
 
+                        // Send the result
                         let _ = result_sender.send(res);
                     }
 
