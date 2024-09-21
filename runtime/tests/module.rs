@@ -1,6 +1,6 @@
 use eyre::Result;
 use wasmtime::{Engine, Module};
-use xxfunc_runtime::wasm::ModuleRunner;
+use xxfunc_runtime::bin::ModuleRunner;
 
 fn get_test_minimal_module(engine: &Engine) -> Module {
     let bytes = include_bytes!("../../examples/minimal/wasm_output/output.wasm");
